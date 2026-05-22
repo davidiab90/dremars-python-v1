@@ -1,0 +1,889 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-QCWH0SJ6C3"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-QCWH0SJ6C3');
+</script>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<link rel="icon" href="{{ url_for('static', filename='favicon.png') }}" type="image/x-icon">
+<link rel="shortcut icon" href="{{ url_for('static', filename='favicon.png') }}">
+<link rel="apple-touch-icon" href="{{ url_for('static', filename='favicon.png') }}" sizes="180x180">
+    <title>Dremars - Interior Plans</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+body {
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+    width: 100vw; 
+    height: 100vh; 
+}
+html {
+    width: 100%;
+    height: 100%;
+}
+        @font-face {
+            font-family: 'VerdanaBold';
+            src: url('{{ url_for("static", filename="fonts/VerdanaBold.woff2") }}') format('woff2');
+        }
+        @font-face {
+            font-family: 'Verdana';
+            src: url('{{ url_for("static", filename="fonts/Verdana.woff2") }}') format('woff2');
+        } 
+        @font-face {
+            font-family: 'D-DIN';
+            src: url('{{ url_for("static", filename="fonts/D-DIN.woff2") }}') format('woff2');
+        } 
+        @font-face {
+            font-family: 'D-DINCo-Bold';
+            src: url('{{ url_for("static", filename="fonts/D-DINCo-Bold.woff2") }}') format('woff2');
+        } 
+        @font-face {
+            font-family: 'D-DIN-Bold';
+            src: url('{{ url_for("static", filename="fonts/D-DIN-Bold.woff2") }}') format('woff2');
+        }
+        body { 
+            font-family: 'D-DIN', sans-serif; 
+            margin: 0; 
+            color: #FFFFFF; 
+            overflow-x: hidden; 
+            width: 100%; 
+            box-sizing: border-box; 
+        }
+        a { color: #FFFFFF; text-decoration: none; }
+        nav {
+            padding: 10px;
+            position: absolute;
+            top: 0;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            z-index: 10;
+        }
+        .logo { 
+            height: 50px; 
+            margin-left: 50px; 
+            margin-right: 20px; 
+            margin-top: 20px; 
+        } 
+        .nav-links {
+            margin-left: 25px;
+            margin-right: auto;
+            margin-top: 20px;
+            display: flex;
+            align-items: baseline;
+            flex-wrap: nowrap;
+            position: relative;
+        }
+        .nav-links a {
+            color: #FFFFFF;
+            margin: 0 15px;
+            text-decoration: none;
+            padding: 5px;
+            opacity: 0.7; 
+            font-size: 13px;
+            font-family: 'D-DIN-Bold', sans-serif;
+            color: rgb(240, 240, 250);
+            vertical-align: middle;
+        }
+        .nav-links a:hover { 
+            color: #FFFFFF; 
+            opacity: 0.9; 
+        }
+        .dropdown-project {
+            position: relative;
+            display: inline-block;
+            flex-shrink: 0;
+            margin: 0 15px;
+            align-self: baseline;
+        }
+        .project-link {
+            color: #FFFFFF;
+            text-decoration: none;
+            padding: 5px;
+            opacity: 0.7;
+            font-size: 13px;
+            font-family: 'D-DIN-Bold', sans-serif;
+            color: rgb(240, 240, 250);
+            position: relative;
+        }
+        .dropdown-content-project {
+            display: none;
+            position: absolute;
+            background-color: #ffffff00;
+            min-width: 160px;
+            z-index: 1000;
+            top: 100%;
+            left: 0;
+            box-shadow: none; 
+            white-space: nowrap;
+        }
+        .dropdown-content-project a {
+            color: #FFFFFF;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+            opacity: 0.7;
+            font-size: 13px;
+            font-family: 'D-DIN-Bold', sans-serif;
+            color: rgb(240, 240, 250);
+        }
+        .dropdown-content-project a:hover {
+            background-color: rgba(255, 255, 255, 0);
+        }
+        .dropdown-project:hover .dropdown-content-project {
+            display: block;
+        }
+        .dropdown-project:hover .project-link::after {
+            color: #FFFFFF;
+        }
+        .project-link::after {
+            content: "\f078";
+            font-family: "Font Awesome 6 Free";
+            font-weight: 900;
+            position: absolute;
+            right: -15px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: transparent;
+            z-index: 2;
+        }
+        .dropdown-ai {
+            position: relative;
+            display: inline-block;
+            flex-shrink: 0;
+            margin: 0 15px;
+            align-self: baseline;
+        }
+        .ai-link {
+            color: #FFFFFF;
+            text-decoration: none;
+            padding: 5px;
+            opacity: 0.7;
+            font-size: 13px;
+            font-family: 'D-DIN-Bold', sans-serif;
+            color: rgb(240, 240, 250);
+            position: relative;
+        }
+        .dropdown-content-ai {
+            display: none;
+            position: absolute;
+            background-color: #ffffff00;
+            min-width: 160px;
+            z-index: 1000;
+            top: 100%;
+            left: 0;
+            box-shadow: none;
+            white-space: nowrap;
+        }
+        .dropdown-content-ai a {
+            color: #FFFFFF;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+            opacity: 0.7;
+            font-size: 13px;
+            font-family: 'D-DIN-Bold', sans-serif;
+            color: rgb(240, 240, 250);
+        }
+        .dropdown-content-ai a:hover {
+            background-color: rgba(255, 255, 255, 0);
+        }
+        .dropdown-ai:hover .dropdown-content-ai {
+            display: block;
+        }
+        .dropdown-ai:hover .ai-link::after {
+            color: #FFFFFF;
+        }
+        .ai-link::after {
+            content: "\f078";
+            font-family: "Font Awesome 6 Free";
+            font-weight: 900;
+            position: absolute;
+            right: -15px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: transparent;
+            z-index: 2;
+        }
+        section { padding: 50px 20px; }
+        .hero { 
+            background-image: url('{{ url_for("static", filename="interior_03.jpg") }}');
+            background-size: cover;
+            height: 100vh;
+            display: flex;
+            flex-direction: column; 
+            justify-content: center;
+            align-items: center;
+            text-align: left;
+            position: relative;
+        } 
+        .hero-content {
+            margin-top: -100px; 
+            position: relative; 
+            z-index: 2; 
+            text-align: center;
+        }
+        h1 {
+            font-size: 2.5em; 
+            color: #FFFFFF; 
+            margin-bottom: 10px; 
+        } 
+        .hero h2 { 
+            font-size: 70px;
+            color: #FFFFFF;
+            margin: 10px 0;            
+            position: relative;
+            font-family: 'D-DIN-Bold', sans-serif;            
+            color: rgb(240, 240, 250); 
+            z-index: 2;
+        }
+        .hero p { 
+            font-size: 17px; 
+            color: #FFFFFF; 
+            margin-bottom: 1px;         
+            margin-top: 7px;
+            position: relative;
+            z-index: 2;            
+            font-family: 'D-DIN', sans-serif; 
+            color: rgb(240, 240, 250);
+        }
+        .hero .gradient-overlay-right-hero {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%; 
+            background: linear-gradient(to right, rgb(0, 0, 0) 0%, rgba(255, 255, 255, 0) 66.67%); 
+            z-index: 1;
+        }
+        .hero::before { 
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.40); 
+            z-index: 1; 
+        }  
+        .gradient-bottom {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 200px;
+            background: linear-gradient(to top, rgb(0, 0, 0) 0%, rgba(255, 255, 255, 0) 100%);
+            z-index: 1; 
+        }    
+        .interior { 
+            background-size: cover; 
+            height: 20vh; 
+            display: flex; 
+            flex-direction: column; 
+            justify-content: center; 
+            align-items: center; 
+            text-align: center; 
+            position: relative;
+            background: rgb(0, 0, 0); 
+        }
+        .interior-content {
+            position: relative; 
+            width: 100%; 
+            padding: 0 40px; 
+            box-sizing: border-box; 
+            z-index: 2; 
+        }        
+        .interior h2 { 
+            font-size: 46px; 
+            color: #FFFFFF; 
+            margin: 10px 0; 
+            position: relative; 
+            z-index: 2;
+            font-family: 'D-DIN-Bold', sans-serif;            
+            color: rgb(240, 240, 250); 
+        }
+        .interior p { 
+            font-size: 26px; 
+            color: #FFFFFF; 
+            margin-bottom: 1px;
+            margin-top: 7px; 
+            position: relative; 
+            z-index: 2; 
+            font-family: 'D-DIN', sans-serif; 
+            color: rgb(240, 240, 250); 
+        }     
+        .fi {
+            height: 100vh;
+            position: relative;
+            padding: 0;
+        }
+        .fi-content {
+            position: relative; 
+            margin-top: 50px; 
+            margin-left: 50px;
+            width: 100%; 
+            padding: 0 40px; 
+            box-sizing: border-box; 
+            z-index: 2; 
+            text-align: left;
+            align-items: flex-start;   
+        } 
+        .fi h2 { 
+            font-size: 46px;
+            color: #FFFFFF; 
+            margin: 10px 0; 
+            position: relative; 
+            z-index: 2; 
+            font-family: 'D-DIN-Bold', sans-serif; 
+            color: rgb(240, 240, 250); 
+        }
+        .fi p { 
+            font-size: 17px; 
+            color: #FFFFFF; 
+            margin-bottom: 1px; 
+            margin-top: 7px; 
+            position: relative; 
+            z-index: 2; 
+            font-family: 'D-DIN', sans-serif; 
+            color: rgb(240, 240, 250); 
+        }
+        .carousel-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+        }
+        .slides {
+            display: flex;
+            width: 300%;
+            height: 100%;
+            transition: transform 0.5s ease;
+        }       
+        .slides .gradient-top {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100px;
+            background: linear-gradient(to bottom, rgb(0, 0, 0) 0%, rgba(255, 255, 255, 0) 100%);
+            z-index: 1; 
+        }   
+        .slides .gradient-right {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to right, rgb(0, 0, 0) 0%, rgba(255, 255, 255, 0) 100%);
+            z-index: 1; 
+        }   
+        .slides::before { 
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.20); 
+            z-index: 2; 
+        }
+        .slide {
+            width: 100vw;
+            height: 100vh;
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            position: relative;
+        }       
+        .slide1 {
+            background-image: url('{{ url_for("static", filename="interior_05.jpg") }}');
+        }
+        .slide2 {
+            background-image: url('{{ url_for("static", filename="interior_06.jpg") }}');
+        }
+        .slide3 {
+            background-image: url('{{ url_for("static", filename="interior_07.jpg") }}');
+        }
+        .slide-content {
+            position: absolute;
+            margin-left: 50px;
+            left: 50px;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 3;
+            color: white;
+        }
+        .slide h2 {
+            font-size: 46px;
+            font-family: 'D-DIN-Bold', sans-serif;
+            color: rgb(240, 240, 250);
+            margin: 10px 0;
+        }
+        .carousel-nav {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 10px;
+            z-index: 4;
+        }
+        .nav-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.5);
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        .nav-dot.active {
+            background: white;
+        }
+        .designprocess { 
+            background-image: url('{{ url_for("static", filename="interior_04.jpg") }}');
+            background-size: cover; 
+            height: 100vh; 
+            display: flex; 
+            flex-direction: column; 
+            justify-content: flex-start; 
+            align-items: flex-start; 
+            text-align: center; 
+            position: relative;
+        }
+        .designprocess-content {
+            position: relative; 
+            margin-top: 150px;
+            margin-left: 50px;
+            width: 100%; 
+            padding: 0 40px; 
+            box-sizing: border-box; 
+            z-index: 2; 
+            text-align: left;
+            align-items: flex-start;
+        }        
+        .designprocess h2 { 
+            font-size: 46px; 
+            color: #FFFFFF; 
+            margin: 10px 0; 
+            position: relative; 
+            z-index: 2; 
+            font-family: 'D-DIN-Bold', sans-serif;           
+            color: rgb(240, 240, 250); 
+        }
+        .designprocess p { 
+            font-size: 17px; 
+            color: #FFFFFF; 
+            margin-bottom: 1px;        
+            margin-top: 7px; 
+            position: relative; 
+            z-index: 2; 
+            font-family: 'D-DIN', sans-serif;            
+            color: rgb(240, 240, 250); 
+        }
+        .designprocess .gradient-overlay-designprocess {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 50%; 
+            background: linear-gradient(to bottom, rgb(0, 0, 0) 0%, rgba(255, 255, 255, 0) 100%); 
+            z-index: 1; 
+        }
+        .designprocess .gradient-overlay-right-designprocess {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%; 
+            background: linear-gradient(to right, rgb(0, 0, 0) 0%, rgba(255, 255, 255, 0) 100%); 
+            z-index: 1; 
+        }
+        .designprocess::before { 
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.20); 
+            z-index: 1; 
+        }
+        .cta { 
+            background-size: cover; 
+            height: 35vh; 
+            display: flex; 
+            flex-direction: column; 
+            justify-content: flex-start; 
+            align-items: flex-start; 
+            text-align: center; 
+            position: relative;
+            background: rgb(0, 0, 0); 
+        }
+        .cta-content {
+            position: absolute; 
+            bottom: 0;
+            left: 0;
+            margin-bottom: 80px;
+            width: 100%; 
+            padding: 0 40px; 
+            box-sizing: border-box; 
+            z-index: 2; 
+            text-align: center;
+            align-items: center;
+        }        
+        .cta h2 { 
+            font-size: 46px; 
+            color: #FFFFFF; 
+            margin: 10px 0; 
+            position: relative;
+            z-index: 2; 
+            font-family: 'D-DIN-Bold', sans-serif;            
+            color: rgb(240, 240, 250); 
+        }
+        .cta p { 
+            font-size: 14px; 
+            margin-bottom: 1px; 
+            margin-top: 7px; 
+            position: relative; 
+            z-index: 2; 
+            font-family: 'D-DIN', sans-serif; 
+            color: rgb(240, 240, 250, .5);
+        }
+        .cta-line {
+        position: absolute;
+        top: 75px;
+        bottom: 140px;
+        left: 50%;
+        width: 2px; 
+        background-color: #FFFFFF; 
+        transform: translateX(-50%); 
+        z-index: 10; 
+        }
+        .footer { 
+            background-color: #000000; 
+            padding: 10px; 
+            text-align: center; 
+            position: relative;
+        }
+        .footer-content {
+            display: flex;
+            align-items: center; 
+            justify-content: flex-start; 
+            margin-left: 50px;
+            margin-bottom: 5px;
+            gap: 500px 
+        }
+        .footer-content p {
+            margin: 0; 
+            font-size: 16px;         
+        }
+        .footer-content p a { 
+            color: #FFFFFF; 
+            margin: 0 15px; 
+            text-decoration: none; 
+            padding: 5px; 
+            font-size: 12px;
+            font-family: 'D-DIN', sans-serif; 
+            margin-left: 5px; 
+            color: rgb(255, 255, 255); 
+        }
+        .footer-content-logo {
+            margin-right: 0;
+        }
+        .x-button {
+            width: 48px; 
+            height: 50.4px; 
+            border-radius: 50%; 
+            border: none; 
+            background-color: #1C2526; 
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            padding: 0; 
+            overflow: hidden; 
+            z-index: 2; 
+            text-decoration: none; 
+            display: inline-flex; 
+        }       
+        .x-logo {
+            width: 12px; 
+            height: 14.4px;
+            object-fit: contain; 
+        }
+        .footer .gradient-overlay-footer {
+            position: absolute;
+            bottom: 70px;
+            left: 0;
+            width: 100%;
+            height: 350px; 
+            background: linear-gradient(to top, rgb(0, 0, 0) 0%, rgba(255, 255, 255, 0) 25%); 
+            z-index: 1; 
+        }
+@media (max-width: 768px) {   
+    body {
+        padding: 0;
+        margin: 0;
+    }
+    nav, .hero {
+        padding: 0 5px;
+    }
+    nav {
+        flex-direction: column; 
+        padding: 15px;
+    }
+    .logo {
+        margin-bottom: 10px;
+        margin-left: 30px;
+    }
+    .nav-links {
+        flex-direction: row; 
+        gap: 10px;
+        margin-left: 5px;
+    }
+    .dropdown-project {
+        align-self: center; 
+    }
+    .nav-links a {
+        font-size: 16px; 
+    }
+    .hero-content {
+        margin-top: -50px; 
+        position: relative; 
+        z-index: 2; 
+        text-align: center;
+    }
+    .originald-content {
+        position: relative;
+        margin-top: 25px; 
+        margin-left: 10px;
+        width: 100%; 
+        padding: 0 40px;
+        box-sizing: border-box; 
+        z-index: 2; 
+        text-align: left;
+        align-items: center;
+    }        
+    .slide-content {
+        position: absolute;
+        margin-left: 5px;
+        left: 50px;
+        top: 50%;
+        transform: translateY(-50%);
+        z-index: 3;
+        color: white;
+    }
+    .designprocess-content {
+        position: relative;
+        margin-top: 40px; 
+        margin-left: 10px;
+        width: 100%; 
+        padding: 0 40px; 
+        box-sizing: border-box; 
+        z-index: 2; 
+        text-align: left;
+        align-items: flex-start;
+    }        
+    .footer-content {
+        flex-direction: row;
+        margin-right: 5px;
+        gap: 10px; 
+    }
+    .footer-content p {
+        margin-left: 40px; 
+        font-size: 16px;
+    }
+    .dropdown-project {
+        position: relative; 
+        display: inline-block;
+    }
+    .project-link {
+        font-size: 16px; 
+        color: #FFFFFF; 
+        opacity: 0.7;
+    }
+    .dropdown-content-project {
+        position: absolute; 
+        top: 100%;
+        left: 0;
+        min-width: 100%; 
+        box-sizing: border-box;
+        z-index: 1000;
+        background-color: #ffffff00;
+    }
+    .dropdown-content-project a {
+        text-align: left; 
+        font-size: 16px; 
+    }
+    .nav-links {
+        justify-content: space-around; 
+    }   
+}
+    </style>
+</head>
+<body>
+    <nav>
+        <a href="{{ url_for('home') }}" class="logo-link">
+        <img src="{{ url_for('static', filename='logo.png') }}" alt="Dreamars Logo" class="logo">
+        <div class="nav-links">
+            <a href="/">HOME</a>  
+            <div class="dropdown-project">
+                <span class="project-link">PROJECT</span>
+                <div class="dropdown-content-project">
+                    <a href="/project_original_designs">ORIGINAL DESIGNS</a>
+                    <a href="/project_physical_projects">PHYSICAL PROJECTS</a>
+                    <a href="/project_interior_plans">INTERIOR PLANS</a>
+                </div>
+            </div>
+            <a href="/contact">CONTACT</a>
+            </div>
+        </div>
+    </nav>
+    <section class="hero">
+        <div class="hero-content">
+            <h2>INTERIOR PLANS</h2> 
+            <p>WHERE YOUR VISION FINDS A HOME</p> 
+        </div>
+        <div class="gradient-bottom"></div>
+    </section>
+    <section class="interior">
+        <div class="gradient-overlay-interior"></div>
+        <div class="gradient-overlay-right-interior"></div>       
+        <div class="interior-content">            
+            <P>We craft spaces that feel alive.</P>
+            <P>Every room, every detail, designed to reflect you.</P>
+        </div>
+    </section>
+<section class="fi">
+    <div class="carousel-container">
+        <div class="slides" id="slides">
+            <div class="slide slide1">
+                <div class="gradient-top"></div>
+                <div class="gradient-right"></div>
+                <div class="slide-content">
+                    <h2>CITY SANCTUARY</h2>
+                    <p>Sleek, modern, warm.</p>
+                    <P>A retreat from the urban rush.</P>
+                </div>
+            </div>
+            <div class="slide slide2">
+                <div class="gradient-top"></div>
+                <div class="gradient-right"></div>
+                <div class="slide-content">
+                    <h2>ETERNAL CALM</h2>
+                    <p>Timeless designs that</p>
+                    <p>soothe the soul and spark inspiration.</p>
+                </div>
+            </div>
+            <div class="slide slide3">
+                <div class="gradient-top"></div>
+                <div class="gradient-right"></div>
+                <div class="slide-content">
+                    <h2>VIVID DREAM</h2>
+                    <p>Bright, fearless spaces</p>
+                    <p>that scream you.</p>
+                </div>
+            </div>
+        </div>
+        <div class="carousel-nav">
+            <div class="nav-dot active" data-slide="0"></div>
+            <div class="nav-dot" data-slide="1"></div>
+            <div class="nav-dot" data-slide="2"></div>
+        </div>        
+    </section>
+<script>
+    let currentSlide = 0;
+    const slides = document.getElementById('slides');
+    const dots = document.querySelectorAll('.nav-dot');
+    const carouselContainer = document.querySelector('.carousel-container');
+    function showSlide(index) {
+        currentSlide = index;
+        const translateX = -index * 33.33; 
+        slides.style.transform = `translateX(${translateX}%)`;
+        slides.style.transition = 'transform 0.5s ease'; 
+        dots.forEach(dot => dot.classList.remove('active'));
+        if (dots[index]) dots[index].classList.add('active');
+    }
+    dots.forEach((dot, index) => {
+        dot.addEventListener('click', () => showSlide(index));
+    });
+    carouselContainer.addEventListener('click', (e) => {
+        const rect = carouselContainer.getBoundingClientRect();
+        const clickX = e.clientX - rect.left; 
+        const halfWidth = rect.width / 2;
+        if (clickX < halfWidth) {
+            const prevSlide = Math.max(0, currentSlide - 1);
+            showSlide(prevSlide);
+        } else {
+            const nextSlide = Math.min(2, currentSlide + 1);
+            showSlide(nextSlide);
+        }
+    });
+    showSlide(0);
+</script>
+    <section class="designprocess">
+        <div class="gradient-overlay-designprocess"></div>
+        <div class="gradient-overlay-right-designprocess"></div>              
+        <div class="designprocess-content">            
+            <h2>OUR DESIGN PROCESS</h2>
+            <p>Your story starts here.</p> 
+            <p>We listen, sketch, and render until your space feels like home.</p>   
+            <p>With precision and passion, we create interiors that live with you.</p>
+        </div>
+    </section>
+    <section class="cta">
+        <div class="cta-line"></div>
+        <div class="cta-content"> 
+            <p>Ready to design your world?<a href="{{ url_for('contact') }}"> Let's talk</a></p>
+        </div>  
+</section>
+    <footer class="footer">
+    <div class="gradient-overlay-footer"></div>
+    <div class="footer-content">
+        <div class="footer-content-logo">
+            <a href="https://x.com/Aetheron" target="_blank" class="x-button">
+                <img src="{{ url_for('static', filename='logo_x.svg') }}" 
+                     alt="X Logo" 
+                     class="x-logo">
+            </a>
+            </div>
+    <p>
+        <a href="/">HOME</a>
+        <a href="/contact">CONTACT</a>
+    </p>
+        </div>
+    </footer>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const projectLink = document.querySelector('.project-link');
+    const content = document.querySelector('.dropdown-content-project');
+    if (window.innerWidth <= 768) {
+        projectLink.addEventListener('click', function(e) {
+            e.preventDefault(); 
+            e.stopPropagation(); 
+            content.style.display = content.style.display === 'block' ? 'none' : 'block';
+        });
+        document.addEventListener('click', function() {
+            content.style.display = 'none';
+        });
+    }
+});
+</script>
+</body>
+</html>

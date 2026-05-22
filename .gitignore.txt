@@ -1,0 +1,16 @@
+# Archivos grandes y cachés
+.cache/
+.huggingface/
+__pycache__/
+*.pyc
+*.log
+*.dll
+*.exe
+AppData/
+Downloads/
+OneDrive/
+Pictures/
+Videos/
+Music/
+*.TMP
+~$*
